@@ -10,6 +10,7 @@ RUN --mount=src=go.mod,dst=go.mod \
     go mod download -x
 RUN --mount=src=.,dst=. \
     --mount=type=cache,dst=/root/go/pkg/mod \
+    --mount=type=cache,dst=/root/.cache/go-build \
     go build --ldflags "-extldflags -static" -o /tmp/main .
 
 FROM alpine:latest
