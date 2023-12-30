@@ -11,6 +11,8 @@ func main() {
 	bootstrap.Boot()
 
 	//Start http server by facades.Route().
+
+	// modifying random stuff so it will trigger the go build
 	go func() {
 		if err := facades.Route().Run(); err != nil {
 			facades.Log().Errorf("Route run error: %v", err)
