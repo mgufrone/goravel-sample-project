@@ -6,8 +6,10 @@ ENV GO111MODULE=on \
 WORKDIR /build
 RUN --mount=src=go.mod,dst=go.mod \
     --mount=src=go.sum,dst=go.sum \
+    --mount=type=cache,dst=/root/go/pkg/mod \
     go mod download -x
 RUN --mount=src=.,dst=. \
+    --mount=type=cache,dst=/root/go/pkg/mod \
     go build --ldflags "-extldflags -static" -o /tmp/main .
 
 FROM alpine:latest
